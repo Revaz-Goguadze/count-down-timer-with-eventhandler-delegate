@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace CustomTimer.Factories
 {
@@ -18,9 +19,12 @@ namespace CustomTimer.Factories
         /// <param name="name">Name of timer.</param>
         /// <param name="ticks">Count of ticks.</param>
         /// <returns>A reference to an object of the <see cref="Timer"/> class.</returns>
+#pragma warning disable CA1822
         public Timer CreateTimer(string? name, int ticks)
+#pragma warning restore CA1822
         {
-            throw new NotImplementedException();
+            Debug.Assert(name != null, nameof(name) + " != null");
+            return new Timer(name, ticks);
         }
     }
 }
